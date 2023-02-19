@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-let studentSchema = new Schema(
+let categorySchema = new Schema(
   {
     categoryName: {
       type: String,
@@ -16,4 +16,4 @@ let studentSchema = new Schema(
     collection: "categorys",
   }
 );
-module.exports = mongoose.model("student", studentSchema);
+module.exports = mongoose.model("category", categorySchema);

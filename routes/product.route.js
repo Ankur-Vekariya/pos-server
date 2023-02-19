@@ -2,18 +2,19 @@ let mongoose = require("mongoose"),
   express = require("express"),
   router = express.Router();
 // Student Model
-let categorySchema = require("../models/Student");
+let productSchema = require("../Models/Product.js");
 
 // CREATE Student
 
-router.route("/create-category").post((req, res, next) => {
-  let id = categorySchema.length;
+router.route("/create-product").post((req, res, next) => {
+  let id = productSchema.length;
   let categoryId = id + 1;
   console.log("id=======", id);
-  categorySchema.create(
+  productSchema.create(
     {
-      categoryName: req.body.categoryName,
-      categoryId: categoryId,
+      productName: req.body.productName,
+      description: req.body.description,
+      price: req.body.price,
       photo: req.body.photo,
     },
     (error, data) => {
@@ -28,7 +29,7 @@ router.route("/create-category").post((req, res, next) => {
 });
 // READ Students
 router.route("/").get((req, res) => {
-  categorySchema.find((error, data) => {
+  productSchema.find((error, data) => {
     if (error) {
       return next(error);
     } else {
@@ -37,8 +38,8 @@ router.route("/").get((req, res) => {
   });
 });
 // Get Single Student
-router.route("/edit-student/:id").get((req, res) => {
-  categorySchema.findById(req.params.id, (error, data) => {
+router.route("/edit-products/:id").get((req, res) => {
+  productSchema.findById(req.params.id, (error, data) => {
     if (error) {
       return next(error);
     } else {
@@ -48,8 +49,8 @@ router.route("/edit-student/:id").get((req, res) => {
 });
 
 // Update Student
-router.route("/update-student/:id").put((req, res, next) => {
-  categorySchema.findByIdAndUpdate(
+router.route("/update-products/:id").put((req, res, next) => {
+  productSchema.findByIdAndUpdate(
     req.params.id,
     {
       $set: req.body,
@@ -67,7 +68,7 @@ router.route("/update-student/:id").put((req, res, next) => {
 });
 // Delete Student
 router.route("/delete-student/:id").delete((req, res, next) => {
-  categorySchema.findByIdAndRemove(req.params.id, (error, data) => {
+  productSchema.findByIdAndRemove(req.params.id, (error, data) => {
     if (error) {
       return next(error);
     } else {
