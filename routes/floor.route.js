@@ -2,19 +2,16 @@ let mongoose = require("mongoose"),
   express = require("express"),
   router = express.Router();
 // Student Model
-let categorySchema = require("../models/Student");
+let floorSchema = require("../Models/Floor.js");
 
 // CREATE Student
 
-router.route("/create-category").post((req, res, next) => {
-  let id = categorySchema.length;
-  let categoryId = id + 1;
-  console.log("id=======", id);
-  categorySchema.create(
+router.route("/create-floor").post((req, res, next) => {
+    floorSchema.create(
     {
-      categoryName: req.body.categoryName,
-      categoryId: categoryId,
-      photo: req.body.photo,
+      floorName: req.body.floorName,
+      description: req.body.description,
+      rooms: req.body.rooms,
     },
     (error, data) => {
       if (error) {
@@ -28,7 +25,7 @@ router.route("/create-category").post((req, res, next) => {
 });
 // READ Students
 router.route("/").get((req, res) => {
-  categorySchema.find((error, data) => {
+    floorSchema.find((error, data) => {
     if (error) {
       return next(error);
     } else {
@@ -37,8 +34,8 @@ router.route("/").get((req, res) => {
   });
 });
 // Get Single Student
-router.route("/edit-category/:id").get((req, res) => {
-  categorySchema.findById(req.params.id, (error, data) => {
+router.route("/edit-floor/:id").get((req, res) => {
+    floorSchema.findById(req.params.id, (error, data) => {
     if (error) {
       return next(error);
     } else {
@@ -48,8 +45,8 @@ router.route("/edit-category/:id").get((req, res) => {
 });
 
 // Update Student
-router.route("/update-category/:id").put((req, res, next) => {
-  categorySchema.findByIdAndUpdate(
+router.route("/update-floor/:id").put((req, res, next) => {
+    floorSchema.findByIdAndUpdate(
     req.params.id,
     {
       $set: req.body,
@@ -66,8 +63,8 @@ router.route("/update-category/:id").put((req, res, next) => {
   );
 });
 // Delete Student
-router.route("/delete-category/:id").delete((req, res, next) => {
-  categorySchema.findByIdAndRemove(req.params.id, (error, data) => {
+router.route("/delete-floor/:id").delete((req, res, next) => {
+    floorSchema.findByIdAndRemove(req.params.id, (error, data) => {
     if (error) {
       return next(error);
     } else {
