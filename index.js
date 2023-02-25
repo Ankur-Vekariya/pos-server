@@ -6,6 +6,8 @@ let bodyParser = require("body-parser");
 const studentRoute = require("./routes/student.route.js");
 const productRoute = require("./routes/product.route.js");
 const floorRoute = require('./routes/floor.route.js')
+const roomRoute = require('./routes/room.route.js')
+
 // Connecting mongoDB Database
 mongoose
   .connect("mongodb://127.0.0.1:27017/pos")
@@ -28,6 +30,8 @@ app.use(cors());
 app.use("/students", studentRoute);
 app.use("/products", productRoute);
 app.use("/floor", floorRoute);
+app.use("/room", roomRoute);
+
 
 
 // PORT
