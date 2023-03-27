@@ -3,10 +3,11 @@ let mongoose = require("mongoose");
 let cors = require("cors");
 let bodyParser = require("body-parser");
 // Express Route
-const studentRoute = require("./routes/student.route.js");
+// const studentRoute = require("./routes/student.route.js");
 const productRoute = require("./routes/product.route.js");
-const floorRoute = require('./routes/floor.route.js')
-const roomRoute = require('./routes/room.route.js')
+const floorRoute = require("./routes/floor.route.js");
+const roomRoute = require("./routes/room.route.js");
+const categoryRoute = require("./routes/category.route.js");
 
 // Connecting mongoDB Database
 mongoose
@@ -27,12 +28,11 @@ app.use(
   })
 );
 app.use(cors());
-app.use("/students", studentRoute);
+// app.use("/students", studentRoute);
 app.use("/products", productRoute);
 app.use("/floor", floorRoute);
 app.use("/room", roomRoute);
-
-
+app.use("/category", categoryRoute);
 
 // PORT
 const port = process.env.PORT || 4000;
