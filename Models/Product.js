@@ -12,8 +12,14 @@ let productSchema = new Schema(
       type: String,
     },
     price: {
-        type: String,
+      type: String,
+    },
+    categories: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "category",
       },
+    ],
   },
   {
     collection: "products",

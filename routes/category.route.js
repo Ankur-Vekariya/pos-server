@@ -32,6 +32,28 @@ router.route("/").get((req, res) => {
     }
   });
 });
+// get category by id
+router.route("/get-category").get((req, res) => {
+  console.log(req.body.categories);
+  let response = [];
+  let obj2 = req.body.categories.map((item) => {
+    console.log("item", item);
+    return categorySchema.findById(item, (error, data) => {
+      if (error) {
+        return next(error);
+      } else {
+        console.log("data", data);
+        return data;
+        // let response = [];
+        // response.push(data);
+        // res.json(response);
+      }
+    });
+  });
+  console.log(obj2);
+
+  res.json(response);
+});
 // Get Single Student
 // router.route("/edit-floor/:id").get((req, res) => {
 //   floorSchema.findById(req.params.id, (error, data) => {

@@ -16,6 +16,7 @@ router.route("/create-product").post((req, res, next) => {
       description: req.body.description,
       price: req.body.price,
       photo: req.body.photo,
+      categories: req.body.categories,
     },
     (error, data) => {
       if (error) {
